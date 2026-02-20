@@ -102,7 +102,9 @@ function Menu({
 
     const sortedCategories = [...CATEGORY_ORDER, ...remainingCategories]
       .filter((category) => grouped.has(category))
-      .filter((category) => (activeCategory ? category === activeCategory : true));
+      .filter((category) =>
+        activeCategory ? category === activeCategory : true,
+      );
 
     return sortedCategories.map((category) => ({
       id: category,
@@ -145,4 +147,5 @@ function Menu({
   );
 }
 
+// Коммент
 export default Menu;
