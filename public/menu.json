@@ -1,0 +1,369 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Брускетта с сёмгой",
+      "price": 200,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 2,
+      "name": "Пицца в ассортименте",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 8,
+      "name": "Пирожок с мясом",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 12,
+      "name": "Тирамису с лимоном",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 13,
+      "name": "Тирамису классический",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 14,
+      "name": "Кекс",
+      "price": 100,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 15,
+      "name": "Меренга",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 19,
+      "name": "Эспрессо",
+      "price": 150,
+      "show": true,
+      "category": "напитки"
+    },
+    {
+      "id": 20,
+      "name": "Американо",
+      "price": 150,
+      "show": true,
+      "category": "напитки"
+    },
+    {
+      "id": 21,
+      "name": "Капучино",
+      "price": 200,
+      "show": true,
+      "category": "напитки"
+    },
+    {
+      "id": 22,
+      "name": "Кофе 3 в 1",
+      "price": 50,
+      "show": true,
+      "category": "напитки"
+    },
+    {
+      "id": 23,
+      "name": "Чай чёрный",
+      "price": 50,
+      "show": true,
+      "category": "напитки"
+    },
+    {
+      "id": 24,
+      "name": "Чай зелёный",
+      "price": 50,
+      "show": true,
+      "category": "напитки"
+    },
+    {
+      "id": 25,
+      "name": "Сок 0.2",
+      "price": 80,
+      "show": false
+    },
+    {
+      "id": 26,
+      "name": "Сок 0.3",
+      "price": 150,
+      "show": true,
+      "category": "напитки"
+    },
+    {
+      "id": 27,
+      "name": "Вода",
+      "price": 150,
+      "show": true,
+      "category": "напитки"
+    },
+    {
+      "id": 28,
+      "name": "Вода с газом",
+      "price": 150,
+      "show": true,
+      "category": "напитки"
+    },
+    {
+      "id": 29,
+      "name": "Пирог ветчина сыр",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 30,
+      "name": "Эклер ваниль",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 31,
+      "name": "Эклер шоколад",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 32,
+      "name": "Три шоколада мини",
+      "price": 150,
+      "show": true
+    },
+    {
+      "id": 33,
+      "name": "Трюфель мини",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 34,
+      "name": "Тропик мини",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 35,
+      "name": "Черника мини",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 36,
+      "name": "Сникерс мини",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 37,
+      "name": "Чизкейк",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 38,
+      "name": "Эстерхази",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 40,
+      "name": "Вишня мини",
+      "price": 150,
+      "show": false
+    },
+    {
+      "id": 51,
+      "name": "Вишня шоколад",
+      "price": 250,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 52,
+      "name": "Салат",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 53,
+      "name": "Бутер с ростбифом",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 55,
+      "name": "Стакан",
+      "price": 50,
+      "show": true,
+      "category": "остальное"
+    },
+    {
+      "id": 56,
+      "name": "Нарезка с колбасой",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 57,
+      "name": "Нарезка с сыром",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    },
+    {
+      "id": 58,
+      "name": "Вино кр.псх",
+      "price": 300,
+      "show": true,
+      "category": "алкоголь"
+    },
+    {
+      "id": 59,
+      "name": "Вино кр.сх",
+      "price": 300,
+      "show": true,
+      "category": "алкоголь"
+    },
+    {
+      "id": 60,
+      "name": "Вино бл.псл Бьянко",
+      "price": 300,
+      "show": true,
+      "category": "алкоголь"
+    },
+    {
+      "id": 61,
+      "name": "Вино кр.псл",
+      "price": 300,
+      "show": true,
+      "category": "алкоголь"
+    },
+    {
+      "id": 62,
+      "name": "Шампанское Брют бл.сх",
+      "price": 300,
+      "show": true,
+      "category": "алкоголь"
+    },
+    {
+      "id": 63,
+      "name": "Шампанское Дольче бл.псл",
+      "price": 300,
+      "show": true,
+      "category": "алкоголь"
+    },
+    {
+      "id": 64,
+      "name": "Водка",
+      "price": 150,
+      "show": true,
+      "category": "алкоголь"
+    },
+    {
+      "id": 65,
+      "name": "Виски Джим Бим",
+      "price": 450,
+      "show": true,
+      "category": "алкоголь"
+    },
+    {
+      "id": 66,
+      "name": "Коньяк три",
+      "price": 250,
+      "show": true,
+      "category": "алкоголь"
+    },
+    {
+      "id": 67,
+      "name": "Коньяк пять",
+      "price": 270,
+      "show": true,
+      "category": "алкоголь"
+    },
+    {
+      "id": 68,
+      "name": "Лезгинка три",
+      "price": 250,
+      "show": true,
+      "category": "алкоголь"
+    },
+    {
+      "id": 69,
+      "name": "Пирожное тирамису",
+      "price": 150,
+      "show": true,
+      "category": "еда"
+    }
+  ],
+  "activeOrder": [
+    1,
+    2,
+    8,
+    12,
+    13,
+    14,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    51,
+    53,
+    55,
+    56,
+    57,
+    58,
+    59,
+    61,
+    64,
+    65,
+    66,
+    67,
+    15,
+    52,
+    68,
+    69,
+    60,
+    62,
+    63,
+    32
+  ]
+}

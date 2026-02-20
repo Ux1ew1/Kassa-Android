@@ -1,0 +1,560 @@
+/* ====== базовые настройки ====== */
+:root {
+  --bg1: #0b1220;
+  --bg2: #101a33;
+  --glass: rgba(255, 255, 255, 0.12);
+  --glass-strong: rgba(255, 255, 255, 0.18);
+  --stroke: rgba(255, 255, 255, 0.22);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.7);
+  --shadow: rgba(0, 0, 0, 0.35);
+  --accent: #7c5cff;
+  --accent2: #22d3ee;
+  --danger: #ff4d6d;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Arial,
+    "Noto Sans",
+    "Liberation Sans",
+    sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(
+      1200px 800px at 15% 20%,
+      rgba(124, 92, 255, 0.35),
+      transparent 55%
+    ),
+    radial-gradient(
+      900px 700px at 85% 35%,
+      rgba(34, 211, 238, 0.22),
+      transparent 55%
+    ),
+    radial-gradient(
+      1000px 700px at 35% 95%,
+      rgba(255, 77, 109, 0.18),
+      transparent 55%
+    ),
+    linear-gradient(180deg, var(--bg1), var(--bg2));
+  overflow-x: hidden;
+}
+
+/* декоративный "шум" */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='320' height='320' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.stage {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 32px 16px;
+}
+
+.card {
+  width: min(980px, 100%);
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 0;
+  border-radius: 28px;
+  overflow: hidden;
+  position: relative;
+  z-index: 11;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.14),
+    rgba(255, 255, 255, 0.06)
+  );
+  border: 1px solid var(--stroke);
+
+  box-shadow:
+    0 30px 80px var(--shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+  backdrop-filter: blur(20px) saturate(120%) contrast(105%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%) contrast(105%);
+  position: relative;
+}
+
+/* glass roughness — матовая "плёнка" как на фото */
+:root {
+  --frost-grain-opacity: 0.7; /* 0..1 — видимость зерна */
+  --frost-tint: rgba(255, 255, 255, 0.06);
+  --frost-shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* слой плёнки поверх карточки */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+
+  /* лёгкая дымка + неоднородность */
+  background:
+    radial-gradient(
+      120% 90% at 30% 12%,
+      rgba(255, 255, 255, 0.1),
+      transparent 55%
+    ),
+    radial-gradient(120% 90% at 75% 88%, var(--frost-shadow), transparent 60%),
+    linear-gradient(135deg, var(--frost-tint), rgba(255, 255, 255, 0.02));
+
+  /* зерно и микродеформация через SVG-фильтр */
+  filter: url(#frostFilm);
+  opacity: var(--frost-grain-opacity);
+  mix-blend-mode: overlay;
+}
+
+/* дополнительная точечная зернистость (чтобы было похоже на матовую плёнку) */
+.card::before {
+  background-image:
+    radial-gradient(
+      120% 90% at 30% 12%,
+      rgba(255, 255, 255, 0.1),
+      transparent 55%
+    ),
+    radial-gradient(120% 90% at 75% 88%, var(--frost-shadow), transparent 60%),
+    linear-gradient(135deg, var(--frost-tint), rgba(255, 255, 255, 0.02)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+}
+
+/* эффект "светового блика" */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: radial-gradient(
+    600px 300px at 25% 10%,
+    rgba(255, 255, 255, 0.18),
+    transparent 55%
+  );
+  pointer-events: none;
+}
+
+.card__media {
+  position: relative;
+  padding: 22px;
+  background:
+    radial-gradient(
+      800px 500px at 30% 10%,
+      rgba(124, 92, 255, 0.28),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 520px at 70% 70%,
+      rgba(34, 211, 238, 0.18),
+      transparent 55%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.02)
+    );
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.product-visual {
+  height: 100%;
+  min-height: 340px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background:
+    radial-gradient(
+      70% 70% at 30% 30%,
+      rgba(255, 255, 255, 0.26),
+      transparent 60%
+    ),
+    radial-gradient(
+      80% 90% at 70% 70%,
+      rgba(255, 255, 255, 0.1),
+      transparent 65%
+    ),
+    linear-gradient(135deg, rgba(124, 92, 255, 0.55), rgba(34, 211, 238, 0.35));
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* стилизованное "изображение" товара (наушники) через CSS */
+.product-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      24px 24px at 38% 56%,
+      rgba(10, 12, 18, 0.55),
+      rgba(10, 12, 18, 0) 70%
+    ),
+    radial-gradient(
+      24px 24px at 62% 56%,
+      rgba(10, 12, 18, 0.55),
+      rgba(10, 12, 18, 0) 70%
+    ),
+    radial-gradient(
+      140px 140px at 50% 56%,
+      rgba(10, 12, 18, 0.55),
+      rgba(10, 12, 18, 0) 70%
+    ),
+    radial-gradient(
+      220px 160px at 50% 40%,
+      rgba(255, 255, 255, 0.18),
+      transparent 60%
+    );
+  mix-blend-mode: soft-light;
+}
+.product-visual::after {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  left: -180px;
+  top: -260px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.22),
+    transparent 55%
+  );
+  transform: rotate(12deg);
+  filter: blur(2px);
+  opacity: 0.8;
+}
+
+.badge {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
+}
+
+.icon-btn {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.icon-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.14);
+}
+.icon-btn:active {
+  transform: translateY(0px) scale(0.98);
+}
+.icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.card__body {
+  padding: 26px 26px 22px;
+  display: grid;
+  gap: 14px;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--muted);
+}
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.stars {
+  letter-spacing: 1px;
+}
+.score {
+  font-weight: 700;
+}
+
+.title {
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1.15;
+  margin: 0;
+}
+.desc {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 2px;
+}
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.price__now {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+.price__old {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: line-through;
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.qty__btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 18px;
+  transition:
+    transform 0.12s ease,
+    background 0.12s ease;
+}
+.qty__btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+.qty__btn:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+.qty__input {
+  width: 64px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(10, 12, 18, 0.18);
+  color: var(--text);
+  text-align: center;
+  outline: none;
+  font-weight: 700;
+}
+.qty__input::-webkit-outer-spin-button,
+.qty__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  background: rgba(255, 255, 255, 0.08);
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.12);
+}
+.btn:active {
+  transform: translateY(0px) scale(0.99);
+}
+
+.btn--primary {
+  flex: 1;
+  border-color: rgba(124, 92, 255, 0.45);
+  background: linear-gradient(
+    135deg,
+    rgba(124, 92, 255, 0.75),
+    rgba(34, 211, 238, 0.55)
+  );
+  box-shadow: 0 18px 40px rgba(124, 92, 255, 0.25);
+}
+.btn--primary:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(124, 92, 255, 0.85),
+    rgba(34, 211, 238, 0.62)
+  );
+}
+.btn--ghost {
+  width: 160px;
+}
+
+.fine {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.chip {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.78);
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* toast */
+.toast {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%) translateY(14px);
+  opacity: 0;
+  pointer-events: none;
+
+  padding: 10px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(10, 12, 18, 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 700;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+.toast--show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* адаптив */
+@media (max-width: 860px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+  .card__media {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .btn--ghost {
+    width: 44%;
+  }
+}
+@media (max-width: 520px) {
+  .actions {
+    flex-direction: column;
+  }
+  .btn--ghost {
+    width: 100%;
+  }
+  .price-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .qty {
+    justify-content: center;
+  }
+}
+
+/* ====== шероховатость стекла ====== */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.card {
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+}
+
+.block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 70px;
+  height: 70px;
+  background-color: aquamarine;
+}

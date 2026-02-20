@@ -1,0 +1,219 @@
+.change-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.change-modal__content {
+  --change-modal-mix: calc(var(--glass-mix-panel) * 0.65);
+  --change-modal-bg: color-mix(
+    in srgb,
+    var(--color-panel-strong) var(--change-modal-mix),
+    transparent
+  );
+  --change-modal-border: color-mix(
+    in srgb,
+    var(--color-divider) 68%,
+    rgba(255, 255, 255, 0.34)
+  );
+  --change-modal-shadow:
+    0 14px 32px color-mix(in srgb, var(--color-shadow) 60%, transparent),
+    0 8px 24px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    var(--glass-inset-strong);
+
+  position: relative;
+  overflow: hidden;
+  width: min(380px, 100%);
+  border-radius: 18px;
+  border: 1px solid var(--change-modal-border);
+  background-color: var(--change-modal-bg);
+  color: #f4f8ff;
+  box-shadow: var(--change-modal-shadow);
+  backdrop-filter: blur(calc(var(--glass-blur) - 12px)) saturate(var(--glass-saturate))
+    contrast(var(--glass-contrast));
+  -webkit-backdrop-filter: blur(calc(var(--glass-blur) - 12px))
+    saturate(var(--glass-saturate)) contrast(var(--glass-contrast));
+  animation: change-modal-in 0.2s ease both;
+}
+
+.change-modal__content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background-image:
+    radial-gradient(120% 90% at 30% 12%, var(--glass-highlight), transparent 55%),
+    radial-gradient(120% 90% at 75% 88%, var(--glass-shadow-tint), transparent 60%),
+    linear-gradient(135deg, var(--glass-linear-1), var(--glass-linear-2)),
+    var(--glass-noise-url);
+  opacity: calc(var(--glass-noise-opacity) + 0.1);
+  mix-blend-mode: overlay;
+}
+
+.change-modal__header,
+.change-modal__form {
+  position: relative;
+  z-index: 1;
+}
+
+.change-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 14px 0;
+}
+
+.change-modal__header h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.change-modal__close {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  min-height: 34px;
+  font-size: 18px;
+  background-color: color-mix(
+    in srgb,
+    var(--color-button-alt-bg) var(--glass-mix-button-alt),
+    transparent
+  );
+  color: var(--color-button-alt-text);
+}
+
+.change-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px 14px;
+}
+
+.change-modal__label {
+  font-size: 13px;
+  color: rgba(244, 248, 255, 0.82);
+}
+
+.change-modal__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--color-input-border) 80%, rgba(255, 255, 255, 0.32));
+  background: color-mix(in srgb, var(--color-input-bg) 68%, transparent);
+  color: var(--color-text-primary);
+  font-size: 16px;
+  outline: none;
+}
+
+.change-modal__input:focus {
+  border-color: color-mix(in srgb, var(--color-border) 84%, rgba(255, 255, 255, 0.46));
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-button-alt-bg) 35%, transparent);
+}
+
+.change-modal__summary {
+  border: 1px solid var(--color-divider);
+  border-radius: 10px;
+  padding: 10px;
+  background: color-mix(in srgb, var(--color-panel) 28%, transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.change-modal__summary p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.change-modal__warning {
+  color: #ff6363;
+  font-weight: 600;
+}
+
+.change-modal__muted {
+  color: rgba(244, 248, 255, 0.7);
+}
+
+.change-modal__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.change-modal__button {
+  width: auto;
+  min-width: 120px;
+  min-height: 42px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.change-modal__button--primary {
+  background-color: color-mix(
+    in srgb,
+    var(--color-button-alt-bg) calc(var(--glass-mix-button-alt) + 14%),
+    transparent
+  );
+  color: var(--color-button-alt-text);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--color-shadow) 42%, transparent);
+}
+
+.change-modal__button--secondary {
+  background-color: color-mix(
+    in srgb,
+    var(--color-button-bg) calc(var(--glass-mix-button) + 10%),
+    transparent
+  );
+  color: var(--color-button-text);
+}
+
+.change-modal__button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.container--lite .change-modal {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.container--lite .change-modal__content {
+  background-color: var(--color-panel);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 8px 18px var(--color-shadow);
+}
+
+.container--lite .change-modal__content::before {
+  content: none;
+}
+
+@keyframes change-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .change-modal__content {
+    animation: none;
+  }
+}

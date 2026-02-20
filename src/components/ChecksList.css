@@ -1,0 +1,123 @@
+.top__checks {
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex: 1 1 auto;
+  justify-content: space-between;
+  position: relative;
+}
+
+.checks {
+  max-width: 200px;
+  overflow: hidden;
+  overflow-x: scroll;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 7px;
+  margin-left: 10px;
+  scroll-snap-type: x proximity;
+  position: relative;
+  z-index: 1;
+}
+
+.checks--overflow-right {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0,
+    #000 calc(100% - 20px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0,
+    #000 calc(100% - 20px),
+    transparent 100%
+  );
+}
+
+.check-item {
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.check-item input[type="radio"] {
+  display: none;
+}
+
+.check-item label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  font-weight: 600;
+  color: var(--top-btn-text, #f6fafd);
+  background-color: var(--top-btn-bg, #3f6d90);
+  border: 1px solid var(--top-btn-border, rgba(255, 255, 255, 0.28));
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.check-item label:hover {
+  transform: translateY(-1px) scale(1.04);
+  background-color: var(--top-btn-bg-hover, #355c79);
+  box-shadow: 0 8px 16px var(--color-shadow);
+}
+
+.check-item input[type="radio"]:checked + label {
+  color: var(--color-button-alt-text);
+  background-color: color-mix(
+    in srgb,
+    var(--color-button-alt-bg) 70%,
+    transparent
+  );
+  border-color: var(--top-btn-border, rgba(255, 255, 255, 0.28));
+  box-shadow: 0 10px 18px var(--color-shadow);
+}
+
+.newCheck {
+  position: relative;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--top-btn-text, #f6fafd);
+  background-color: var(--top-btn-bg, #3f6d90);
+  border-radius: 8px;
+  user-select: none;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+  border: 1px solid var(--top-btn-border, rgba(255, 255, 255, 0.28));
+  outline: none;
+  font-size: 20px;
+  box-shadow: 0 8px 16px var(--color-shadow);
+}
+
+.newCheck:hover {
+  transform: translateY(-1px) scale(1.05);
+  background-color: var(--top-btn-bg-hover, #355c79);
+  box-shadow: 0 10px 20px var(--color-shadow);
+}
+
+.newCheck:active {
+  transform: scale(0.96);
+  background-color: var(--top-btn-bg-active, #2d4d65);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .check-item label:hover,
+  .newCheck:hover,
+  .newCheck:active {
+    transform: none;
+  }
+}

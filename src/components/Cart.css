@@ -1,0 +1,137 @@
+.cart {
+  color: var(--color-text-primary);
+}
+
+.cart-empty {
+  padding: 24px 12px;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.cart__item {
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 4px;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-card);
+  margin: 4px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+  border: 1px solid var(--color-divider);
+  box-shadow: 0 8px 16px var(--color-shadow);
+}
+
+.cart__item::before {
+  content: none;
+}
+
+.cart__item-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
+  gap: 16px;
+}
+
+.cart__item-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart__item-name span {
+  max-width: 200px;
+  overflow: hidden;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cart__item-qty {
+  font-size: 16px;
+  color: var(--color-text-muted);
+}
+
+.cart__item-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.cart__item-price-total {
+  font-weight: 600;
+}
+
+.cart__item-price-each {
+  font-size: 16px;
+  color: var(--color-text-muted);
+}
+
+.cart__item--fulfilled {
+  opacity: 0.45;
+  background-color: color-mix(in srgb, var(--color-button-alt-bg) 20%, transparent);
+}
+
+.cart__item--fulfilled .cart__item-name span:first-child {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.cart__item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px var(--color-shadow);
+}
+
+.cart__item:active {
+  transform: scale(0.985);
+}
+
+.cart__item:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-button-alt-bg) 55%, transparent);
+  outline-offset: 1px;
+}
+
+:root[data-theme="dark"] .cart-drawer .cart__item {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.remove-item {
+  background: color-mix(in srgb, var(--color-danger) 80%, transparent);
+  color: var(--color-button-text);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  min-width: 44px;
+  min-height: 44px;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.remove-item:hover {
+  background: color-mix(in srgb, var(--color-danger-hover) 85%, transparent);
+  transform: scale(1.04);
+}
+
+.remove-item:active {
+  transform: scale(0.96);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart__item:hover,
+  .cart__item:active,
+  .remove-item:hover,
+  .remove-item:active {
+    transform: none;
+  }
+}

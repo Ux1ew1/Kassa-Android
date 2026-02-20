@@ -1,0 +1,26 @@
+button,
+a,
+input,
+label,
+div {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  width: 40px;
+  height: 40px;
+  min-width: 44px;
+  min-height: 44px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #2c2c2c;
+  background-color: #6c757d;
+  border-radius: 8px;
+  user-select: none;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  border: none;
+  outline: none;
+  touch-action: manipulation;
+}
+

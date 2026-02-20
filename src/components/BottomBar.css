@@ -1,0 +1,161 @@
+.bottom {
+  --bottom-offset: calc(env(safe-area-inset-bottom) + 12px);
+  --bottom-padding-x: 12px;
+  --bottom-padding-y: 12px;
+  --bottom-radius: 20px;
+  --bottom-border-color: var(--color-divider);
+  --bottom-text-color: var(--color-button-text);
+  --bottom-bg: color-mix(
+    in srgb,
+    var(--color-panel-strong) calc(var(--glass-mix-panel) * 0.65),
+    transparent
+  );
+  --bottom-shadow:
+    0 -10px 24px color-mix(in srgb, var(--color-shadow) 70%, transparent),
+    0 6px 18px rgba(0, 0, 0, 0.18), 0 18px 36px rgba(0, 0, 0, 0.22),
+    var(--glass-inset-strong);
+  --bottom-backdrop-blur: calc(var(--glass-blur) - 12px);
+  --bottom-backdrop-saturate: var(--glass-saturate);
+  --bottom-backdrop-contrast: var(--glass-contrast);
+  --bottom-noise-opacity: var(--glass-noise-opacity);
+  --bottom-noise-grad-1: radial-gradient(
+    120% 90% at 30% 12%,
+    var(--glass-highlight),
+    transparent 55%
+  );
+  --bottom-noise-grad-2: radial-gradient(
+    120% 90% at 75% 88%,
+    var(--glass-shadow-tint),
+    transparent 60%
+  );
+  --bottom-noise-grad-3: linear-gradient(
+    135deg,
+    var(--glass-linear-1),
+    var(--glass-linear-2)
+  );
+  --bottom-noise-layer: var(--glass-noise-url);
+  --bottom-action-bg: color-mix(
+    in srgb,
+    var(--color-button-alt-bg) var(--glass-mix-button-alt),
+    transparent
+  );
+  --bottom-action-text: var(--color-button-alt-text);
+  --bottom-action-padding: 7px;
+  --bottom-action-icon: 24px;
+  --bottom-text-size: 16px;
+  --bottom-text-weight: 500;
+  --bottom-width: auto;
+  --bottom-margin-x: var(--bottom-padding-x);
+  --bottom-left: 0;
+  --bottom-translate-x: 0;
+
+  position: sticky;
+  bottom: var(--bottom-offset);
+  left: var(--bottom-left);
+  transform: translateX(var(--bottom-translate-x));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--bottom-text-color);
+  overflow: hidden;
+  background-color: var(--bottom-bg);
+  background-image: none;
+  padding: var(--bottom-padding-y) var(--bottom-padding-x)
+    calc(var(--bottom-padding-y) + env(safe-area-inset-bottom));
+  margin: 0 var(--bottom-margin-x);
+  z-index: 1;
+  border-top: 1px solid var(--bottom-border-color);
+  border-radius: var(--bottom-radius);
+  box-shadow: var(--bottom-shadow);
+  backdrop-filter: blur(var(--bottom-backdrop-blur))
+    saturate(var(--bottom-backdrop-saturate))
+    contrast(var(--bottom-backdrop-contrast));
+  -webkit-backdrop-filter: blur(var(--bottom-backdrop-blur))
+    saturate(var(--bottom-backdrop-saturate))
+    contrast(var(--bottom-backdrop-contrast));
+  width: var(--bottom-width);
+  animation: bottom-float-in 0.28s ease both;
+  transition:
+    width 0.25s ease,
+    margin 0.25s ease,
+    transform 0.25s ease,
+    border-radius 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.bottom::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background-image:
+    var(--bottom-noise-grad-1), var(--bottom-noise-grad-2),
+    var(--bottom-noise-grad-3), var(--bottom-noise-layer);
+  opacity: var(--bottom-noise-opacity);
+  mix-blend-mode: overlay;
+}
+
+.done-button {
+  background-color: var(--bottom-action-bg);
+  color: var(--bottom-action-text);
+}
+
+.amountButton {
+  background-color: var(--bottom-action-bg);
+  color: var(--bottom-action-text);
+  padding: var(--bottom-action-padding);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.amountButton svg {
+  width: var(--bottom-action-icon);
+  height: var(--bottom-action-icon);
+}
+
+.price,
+.amount {
+  font-size: var(--bottom-text-size);
+  font-weight: var(--bottom-text-weight);
+}
+
+.container--lite .bottom {
+  --bottom-bg: var(--color-panel-strong);
+}
+
+.container--lite .bottom::before {
+  --bottom-noise-opacity: 0;
+}
+
+.bottom--stuck {
+  --bottom-margin-x: 0;
+  --bottom-radius: 0;
+}
+
+.bottom-sentinel {
+  height: 1px;
+  margin-top: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes bottom-float-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bottom {
+    animation: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,115 @@
+.search-container {
+  position: relative;
+  padding: 12px 4px;
+  background-color: var(--color-app-bg);
+  box-sizing: border-box;
+  transition: transform 0.2s ease;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 42px 12px 14px;
+  font-size: 16px;
+  border: 1px solid var(--color-input-border);
+  border-radius: 8px;
+  background-color: var(--color-input-bg);
+  color: var(--color-text-primary);
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+  box-sizing: border-box;
+  touch-action: manipulation;
+  box-shadow: 0 8px 16px var(--color-shadow);
+}
+
+.search-input:focus {
+  border-color: var(--color-border);
+  box-shadow:
+    0 12px 24px var(--color-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.search-input--active {
+  background-color: color-mix(
+    in srgb,
+    var(--color-button-alt-bg) 24%,
+    transparent
+  );
+  border-color: color-mix(
+    in srgb,
+    var(--color-button-alt-bg) 56%,
+    var(--color-input-border)
+  );
+  animation: search-active-glow 1.9s ease-in-out infinite;
+}
+
+.search-input::placeholder {
+  color: var(--color-placeholder);
+}
+
+.search-clear-button {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: color 0.2s ease, transform 0.15s ease, background-color 0.2s ease;
+  touch-action: manipulation;
+}
+
+.search-clear-button:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-chip-bg);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.search-clear-button:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+@keyframes search-active-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 10px 20px var(--color-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+  50% {
+    box-shadow:
+      0 14px 28px var(--color-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search-input--active {
+    animation: none;
+  }
+
+  .search-clear-button:hover,
+  .search-clear-button:active {
+    transform: translateY(-50%);
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .search-input--active {
+    animation: none;
+  }
+}
